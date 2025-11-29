@@ -99,7 +99,7 @@ const Contact = () => {
             <p className="flex items-center gap-2">
               <FontAwesomeIcon icon={faLinkedin} className="text-[#7DE2D1] w-4 h-4" />
               <a 
-                href="https://linkedin.com/in/parnitachaudhary" 
+                href="https://linkedin.com/in/parneeta-chaudhary" 
                 target="_blank" 
                 rel="noreferrer"
                 className="hover:text-[#7DE2D1] transition-colors duration-200"

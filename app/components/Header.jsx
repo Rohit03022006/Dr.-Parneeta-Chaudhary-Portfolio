@@ -45,10 +45,10 @@ const Header = () => {
     },
     {
       name: 'LinkedIn',
-      value: 'parneetachaudhary',
+      value: 'DR. Parneeta Chaudhary',
       icon: faLinkedin,
       isFontAwesome: true,
-      href: 'https://www.linkedin.com/in/parneetachaudhary',
+      href: 'https://linkedin.com/in/parneeta-chaudhary',
       color: 'hover:text-[#0077B5]'
     }
   ]

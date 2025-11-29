@@ -19,7 +19,7 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   title: {
-    default: "Dr. Parneeta Chaudhary - Portfolio",
+    default: "Dr. Parneeta Chaudhary",
     template: "%s | Dr. Parneeta Chaudhary"
   },
   description: "Assistant Professor & Ph.D. in Biotechnology. Dedicated educator and researcher passionate about advancing biotechnology through innovative research and quality education.",
@@ -32,9 +32,9 @@ export const metadata = {
     type: 'website',
     locale: 'en_IN',
     // url: 'https://dr-parneeta-chaudhary.vercel.app', 
-    title: "Dr. Parneeta Chaudhary - Portfolio",
+    title: "Dr. Parneeta Chaudhary",
     description: "Assistant Professor & Ph.D. in Biotechnology. Dedicated educator and researcher passionate about advancing biotechnology.",
-    siteName: "Dr. Parneeta Chaudhary Portfolio",
+    siteName: "Dr. Parneeta Chaudhary",
     
   }
 };
