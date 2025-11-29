@@ -6,14 +6,6 @@ import { MapPin, ExternalLink, Heart } from 'lucide-react'
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      text: 'New Delhi, India',
-      href: '#'
-    }
-  ]
-
   const quickLinks = [
     { name: 'About', href: '#about' },
     { name: 'Research', href: '#research' },
@@ -33,28 +25,20 @@ const Footer = () => {
   return (
     <footer className="bg-[#2B2C28] border-t border-[#339989]/20">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="md:col-span-2 lg:col-span-1"
+            className="md:col-span-2 lg:col-span-2"
           >
-            <h3 className="text-2xl font-bold text-[#7DE2D1] font-playfair mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#7DE2D1] font-playfair mb-3 sm:mb-4">
               Dr. Parneeta Chaudhary
             </h3>
-            <p className="text-[#FFFAFB]/70 text-sm leading-relaxed mb-4">
-              Assistant Professor & Ph.D. in Biotechnology. Dedicated to advancing 
-              biotechnology research and education through innovation and excellence.
-            </p>
-            <div className="flex items-center gap-3 mb-4">
-              <MapPin size={16} className="text-[#339989]" />
-              <span className="text-[#FFFAFB]/70 text-sm">New Delhi, India</span>
-            </div>
             <div className="flex items-center gap-2 text-[#FFFAFB]/60 text-sm">
-              <Heart size={16} className="text-[#339989]" />
+              <Heart size={16} className="text-[#339989] flex-shrink-0" />
               <span>Building the future of biotechnology</span>
             </div>
           </motion.div>
@@ -64,17 +48,17 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex justify-center lg:justify-start"
+            className="flex justify-start"
           >
             <div>
               <h4 className="text-lg font-semibold text-[#FFFAFB] mb-4 font-inter">Quick Links</h4>
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                 {quickLinks.map((link, index) => (
                   <motion.a
                     key={index}
                     href={link.href}
                     whileHover={{ x: 5 }}
-                    className="block text-[#FFFAFB]/70 hover:text-[#7DE2D1] transition-colors duration-200 text-sm"
+                    className="block text-[#FFFAFB]/70 hover:text-[#7DE2D1] transition-colors duration-200 text-sm sm:text-base whitespace-nowrap"
                   >
                     {link.name}
                   </motion.a>
@@ -88,7 +72,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center lg:justify-start"
+            className="flex justify-start"
           >
             <div>
               <h4 className="text-lg font-semibold text-[#FFFAFB] mb-4 font-inter">Academic Profiles</h4>
@@ -100,10 +84,10 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ x: 5 }}
-                    className="flex items-center gap-2 text-[#FFFAFB]/70 hover:text-[#7DE2D1] transition-colors duration-200 text-sm group"
+                    className="flex items-center gap-2 text-[#FFFAFB]/70 hover:text-[#7DE2D1] transition-colors duration-200 text-sm sm:text-base group"
                   >
-                    <span>{profile.name}</span>
-                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                    <span className="truncate">{profile.name}</span>
+                    <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0" />
                   </motion.a>
                 ))}
               </div>
@@ -114,13 +98,13 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-[#339989]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-[#FFFAFB]/60 text-sm text-center md:text-left"
+              className="text-[#FFFAFB]/60 text-xs sm:text-sm text-center sm:text-left order-2 sm:order-1"
             >
               © {currentYear} Dr. Parneeta Chaudhary. All rights reserved.
             </motion.p>
@@ -129,8 +113,9 @@ const Footer = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-center gap-2 text-[#FFFAFB]/60 text-sm"
+              className="flex items-center gap-2 text-[#FFFAFB]/60 text-xs sm:text-sm order-1 sm:order-2"
             >
+              <Heart size={14} className="text-[#339989]" />
               <span>Made with passion for science</span>
             </motion.div>
           </div>

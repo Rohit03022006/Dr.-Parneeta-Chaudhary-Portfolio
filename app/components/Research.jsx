@@ -14,7 +14,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 }
+    transition: { staggerChildren: 0.15 }
   }
 }
 
@@ -82,7 +82,7 @@ const timelineEntries = [
   .sort((a, b) => b.sortYear - a.sortYear)
 
 const ResearchCard = ({ item }) => {
-  const [ref, inView] = useInView({ threshold: 0.15, triggerOnce: true })
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
   const meta = typeMeta[item.type] ?? typeMeta.publication
   const Icon = meta.icon
 
@@ -92,35 +92,35 @@ const ResearchCard = ({ item }) => {
       variants={itemVariants}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
-      className="relative pl-10"
+      className="relative pl-8 sm:pl-10"
     >
       <motion.div
-        whileHover={{ translateY: -4 }}
-        className="relative bg-[#2B2C28] border border-[#339989]/25 rounded-2xl p-6 shadow-lg"
+        whileHover={{ translateY: -2 }}
+        className="relative bg-[#2B2C28] border border-[#339989]/25 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg"
       >
-        <div className="absolute -left-5 top-6 w-10 h-10 rounded-full bg-gradient-to-br from-[#339989] to-[#7DE2D1] flex items-center justify-center shadow-md">
-          <Icon size={20} className="text-[#131515]" />
+        <div className="absolute -left-4 sm:-left-5 top-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#339989] to-[#7DE2D1] flex items-center justify-center shadow-md">
+          <Icon size={16} className="sm:w-5 sm:h-5 text-[#131515]" />
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 mb-3">
-          <p className="text-sm text-[#7DE2D1]/80 font-semibold">{item.year}</p>
-          <span className="px-2 py-1 bg-[#339989]/15 text-[#7DE2D1] text-xs rounded-full border border-[#339989]/30">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+          <p className="text-xs sm:text-sm text-[#7DE2D1]/80 font-semibold">{item.year}</p>
+          <span className="px-2 py-1 bg-[#339989]/15 text-[#7DE2D1] text-xs rounded-full border border-[#339989]/30 whitespace-nowrap">
             {meta.label}
           </span>
         </div>
 
-        <h3 className="text-2xl font-bold text-[#FFFAFB] mb-2">{item.title}</h3>
+        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#FFFAFB] mb-2 leading-tight">{item.title}</h3>
 
         {item.subtitle && (
-          <p className="text-[#FFFAFB]/80 text-sm mb-2">{item.subtitle}</p>
+          <p className="text-[#FFFAFB]/80 text-xs sm:text-sm mb-2 leading-relaxed">{item.subtitle}</p>
         )}
 
         {item.meta && (
-          <p className="text-[#FFFAFB]/70 text-sm mb-3">{item.meta}</p>
+          <p className="text-[#FFFAFB]/70 text-xs sm:text-sm mb-3 leading-relaxed">{item.meta}</p>
         )}
 
         {item.summary && (
-          <p className="text-[#FFFAFB]/70 text-sm leading-relaxed mb-4">{item.summary}</p>
+          <p className="text-[#FFFAFB]/70 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">{item.summary}</p>
         )}
 
         {item.link && (
@@ -128,10 +128,10 @@ const ResearchCard = ({ item }) => {
             href={item.link}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 text-[#7DE2D1] hover:text-[#FFFAFB] text-sm"
+            className="inline-flex items-center gap-2 text-[#7DE2D1] hover:text-[#FFFAFB] text-xs sm:text-sm transition-colors duration-200"
           >
             {item.doi ? `DOI: ${item.doi}` : 'View reference'}
-            <ExternalLink size={14} />
+            <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5" />
           </a>
         )}
       </motion.div>
@@ -140,22 +140,22 @@ const ResearchCard = ({ item }) => {
 }
 
 const Research = () => {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true })
 
   return (
-    <section id="research" className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-20 bg-[#131515] scroll-mt-20">
+    <section id="research" className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-[#131515] scroll-mt-16 sm:scroll-mt-20">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="text-center mb-16"
+        className="text-center mb-12 sm:mb-16"
       >
-        <p className="text-[#7DE2D1] text-lg font-inter mb-3">Research Contributions</p>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFAFB] font-playfair mb-4">
+        <p className="text-[#7DE2D1] text-base sm:text-lg font-inter mb-3">Research Contributions</p>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFFAFB] font-playfair mb-4">
           Publications & Manuscripts
         </h2>
-        <p className="text-[#FFFAFB]/80 max-w-3xl mx-auto">
+        <p className="text-[#FFFAFB]/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
           A chronological snapshot of peer-reviewed publications, manuscripts in review, and book chapters
           highlighting advancements in biotechnology, bioinformatics, and sustainable agriculture.
         </p>
@@ -165,7 +165,7 @@ const Research = () => {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
-        className="relative max-w-5xl mx-auto space-y-8"
+        className="relative max-w-4xl lg:max-w-5xl mx-auto space-y-6 sm:space-y-8"
       >
         {timelineEntries.map((item) => (
           <ResearchCard key={item.id} item={item} />

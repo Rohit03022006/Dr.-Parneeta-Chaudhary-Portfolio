@@ -10,7 +10,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.15
     }
   }
 }
@@ -35,7 +35,7 @@ const itemVariants = {
 // Achievement Item Component
 const AchievementCard = ({ achievement, index }) => {
   const [ref, inView] = useInView({
-    threshold: 0.15,
+    threshold: 0.1,
     triggerOnce: true
   })
 
@@ -56,34 +56,34 @@ const AchievementCard = ({ achievement, index }) => {
       variants={itemVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className={`relative flex flex-col md:flex-row ${isLeft ? 'md:justify-start' : 'md:justify-end'} md:gap-16`}
+      className={`relative flex flex-col lg:flex-row ${isLeft ? 'lg:justify-start' : 'lg:justify-end'} lg:gap-12 xl:gap-16`}
     >
-      <div className={`md:w-1/2 ${isLeft ? 'md:pr-16' : 'md:pl-16'} w-full`}>
+      <div className={`lg:w-1/2 ${isLeft ? 'lg:pr-12 xl:pr-16' : 'lg:pl-12 xl:pl-16'} w-full`}>
         <motion.div
           whileHover={{ translateY: -4 }}
-          className="relative bg-[#2B2C28] border border-[#339989]/25 rounded-2xl p-6 shadow-lg"
+          className="relative bg-[#2B2C28] border border-[#339989]/25 rounded-xl lg:rounded-2xl p-4 sm:p-6 shadow-lg"
         >
-          <div className={`hidden md:flex absolute ${isLeft ? '-right-11' : '-left-11'} top-8 w-10 h-10 rounded-full bg-gradient-to-br from-[#339989] to-[#7DE2D1] items-center justify-center shadow-md`}>
-            <Icon size={20} className="text-[#131515]" />
+          <div className={`hidden lg:flex absolute ${isLeft ? '-right-10' : '-left-10'} top-6 w-8 h-8 xl:w-10 xl:h-10 rounded-full bg-gradient-to-br from-[#339989] to-[#7DE2D1] items-center justify-center shadow-md z-10`}>
+            <Icon size={16} className="xl:w-5 xl:h-5 text-[#131515]" />
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 mb-3">
-            <p className="text-sm text-[#7DE2D1]/80 font-semibold">{achievement.year}</p>
-            <span className="px-2 py-1 bg-[#339989]/15 text-[#7DE2D1] text-xs rounded-full border border-[#339989]/30">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+            <p className="text-xs sm:text-sm text-[#7DE2D1]/80 font-semibold">{achievement.year}</p>
+            <span className="px-2 py-1 bg-[#339989]/15 text-[#7DE2D1] text-xs rounded-full border border-[#339989]/30 whitespace-nowrap">
               {meta.label}
             </span>
           </div>
 
-          <h3 className="text-2xl font-bold text-[#FFFAFB] mb-2">{achievement.title}</h3>
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#FFFAFB] mb-2 leading-tight">{achievement.title}</h3>
           <p className="text-[#FFFAFB]/80 text-sm mb-1">{achievement.organization}</p>
-          <p className="text-[#FFFAFB]/70 text-sm">{achievement.description}</p>
+          <p className="text-[#FFFAFB]/70 text-xs sm:text-sm leading-relaxed">{achievement.description}</p>
 
           {achievement.location && (
-            <p className="text-[#FFFAFB]/60 text-xs mt-2">{achievement.location}</p>
+            <p className="text-[#FFFAFB]/60 text-xs mt-2 leading-relaxed">{achievement.location}</p>
           )}
 
           {achievement.prize && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 mt-4 bg-[#7DE2D1]/10 border border-[#7DE2D1]/30 rounded-full text-xs text-[#7DE2D1]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mt-3 bg-[#7DE2D1]/10 border border-[#7DE2D1]/30 rounded-full text-xs text-[#7DE2D1]">
               <Star size={12} />
               {achievement.prize}
             </div>
@@ -91,9 +91,9 @@ const AchievementCard = ({ achievement, index }) => {
         </motion.div>
       </div>
 
-      <div className="md:hidden flex items-center gap-3 mt-4">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#339989] to-[#7DE2D1] flex items-center justify-center shadow-md">
-          <Icon size={20} className="text-[#131515]" />
+      <div className="lg:hidden flex items-center gap-3 mt-3 sm:mt-4">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#339989] to-[#7DE2D1] flex items-center justify-center shadow-md flex-shrink-0">
+          <Icon size={16} className="sm:w-5 sm:h-5 text-[#131515]" />
         </div>
         <span className="text-[#7DE2D1]/80 text-sm font-semibold">{meta.label}</span>
       </div>
@@ -103,7 +103,7 @@ const AchievementCard = ({ achievement, index }) => {
 
 const Achievements = () => {
   const [ref, inView] = useInView({
-    threshold: 0.1,
+    threshold: 0.05,
     triggerOnce: true
   })
 
@@ -196,22 +196,22 @@ const Achievements = () => {
   ].sort((a, b) => b.year - a.year)
 
   return (
-    <section id='achievements' className='w-full min-h-screen px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20 bg-[#131515]'>
+    <section id='achievements' className='w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 scroll-mt-16 sm:scroll-mt-20 bg-[#131515]'>
       {/* Header Section */}
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className='text-center mb-16'
+        className='text-center mb-12 sm:mb-16'
       >
-        <p className='text-[#7DE2D1] text-lg font-inter mb-3 flex items-center justify-center gap-2'>
+        <p className='text-[#7DE2D1] text-base sm:text-lg font-inter mb-3'>
           Honors & Recognition
         </p>
-        <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFAFB] font-playfair mb-4'>
+        <h2 className='text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFFAFB] font-playfair mb-4'>
           Achievements & Awards
         </h2>
-        <p className='text-[#FFFAFB]/80 max-w-3xl mx-auto'>
+        <p className='text-[#FFFAFB]/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4'>
           A chronological showcase of accolades, grants, and recognitions earned through excellence in biotechnology
           research, teaching, and innovation.
         </p>
@@ -219,12 +219,12 @@ const Achievements = () => {
 
       {/* Achievements Grid */}
       <div className='relative max-w-5xl mx-auto'>
-        <div className='hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#339989] to-[#7DE2D1] -translate-x-1/2' />
+        <div className='hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#339989] to-[#7DE2D1] -translate-x-1/2' />
         <motion.div
           variants={containerVariants}
           initial='hidden'
           animate={inView ? 'visible' : 'hidden'}
-          className='space-y-10'
+          className='space-y-8 sm:space-y-10 '
         >
           {achievementsData.map((achievement, index) => (
             <AchievementCard key={achievement.id} achievement={achievement} index={index} />
