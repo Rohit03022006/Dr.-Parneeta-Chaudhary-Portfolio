@@ -12,14 +12,7 @@ import {
 
 const Header = () => {
   const academicLinks = [
-    {
-      name: 'Skype',
-      value: 'parnita.chaudhary',
-      icon: faSkype,
-      isFontAwesome: true,
-      href: 'skype:parnita.chaudhary?chat',
-      color: 'hover:text-[#00AFF0]'
-    },
+
     {
       name: 'ResearchGate',
       value: 'Parneeta-Chaudhary',
@@ -60,14 +53,13 @@ const Header = () => {
         <h3 className='text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-[#FFFAFB] font-playfair leading-tight'>
           Hi, I'm <span className='text-[#7DE2D1]'>Dr. Parneeta Chaudhary</span>
         </h3>
-        
+
         <h1 className='text-lg sm:text-xl lg:text-2xl xl:text-3xl text-[#7DE2D1] font-semibold font-inter leading-relaxed'>
-          Assistant Professor & Ph.D. Biotechnology
+          Assistant Professor
         </h1>
-        
+
         <p className='text-base sm:text-lg lg:text-xl text-[#FFFAFB]/80 font-inter max-w-2xl mx-auto leading-relaxed px-2'>
-          Dedicated educator and researcher passionate about advancing biotechnology 
-          through innovative research and quality education.
+          (Ph.D. Biotechnology)
         </p>
       </div>
 
@@ -105,14 +97,9 @@ const Header = () => {
 
       {/* Buttons */}
       <div className='flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-4 sm:mt-6 lg:mt-8 px-2'>
-        <a 
-          href="#contact" 
-          className='flex items-center justify-center gap-2 px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 border border-[#339989] bg-transparent text-[#FFFAFB] rounded-full transition-all duration-200 hover:bg-[#339989] hover:text-[#131515] font-inter font-medium text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto'
-        >
-          Contact Me <ArrowRight strokeWidth={1.5} size={18} className="sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
-        </a>
-        <a 
-          href="#research" 
+
+        <a
+          href="#research"
           className='flex items-center justify-center gap-2 px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 border border-[#339989] bg-[#339989] text-[#131515] rounded-full transition-all duration-200 hover:bg-[#7DE2D1] font-inter font-medium text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto'
         >
           My Research <ArrowRight strokeWidth={1.5} size={18} className="sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
