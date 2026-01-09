@@ -65,7 +65,7 @@ const Header = () => {
 
       {/* Academic Links */}
       <div className='max-w-6xl mx-auto w-full px-2 sm:px-4'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4'>
           {academicLinks.map((link) => (
             <a
               key={link.name}
@@ -97,6 +97,13 @@ const Header = () => {
 
       {/* Buttons */}
       <div className='flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-4 sm:mt-6 lg:mt-8 px-2'>
+         <a 
+          href="#contact" 
+          className='flex items-center justify-center gap-2 px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 border border-[#339989] bg-transparent text-[#FFFAFB] rounded-full transition-all duration-200 hover:bg-[#339989] hover:text-[#131515] font-inter font-medium text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto'
+        >
+          Contact Me <ArrowRight strokeWidth={1.5} size={18} className="sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
+        </a>
+
 
         <a
           href="#research"
