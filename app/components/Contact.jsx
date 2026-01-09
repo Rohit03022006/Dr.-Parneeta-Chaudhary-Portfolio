@@ -11,12 +11,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 
 const highlights = [
-  "Collaborative biotechnology research opportunities",
+  "Collaborative Biotechnology and Bioinformatics research opportunities",
   "Guest lectures, workshops, and training sessions",
-  "Consultation on bioinformatics and proteomics",
+  "Consultation on multi-omics",
   "Industry-academia partnerships",
-  "Mentorship for research scholars",
-  "Speaking engagements and conferences",
+  "Mentorship and Research Projects for students",
 ]
 
 const Contact = () => {
@@ -65,9 +64,8 @@ const Contact = () => {
       className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-[#131515] scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="text-center mb-12 sm:mb-16">
-        <p className="text-[#7DE2D1] text-base sm:text-lg font-inter mb-3">Get in Touch</p>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFFAFB] font-playfair mb-4">
-          Let's Collaborate
+          To Contact  
         </h2>
         <p className="text-[#FFFAFB]/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
           Whether it's research, mentorship, or keynote sessions, feel free to reach out using the
@@ -94,40 +92,6 @@ const Contact = () => {
               </li>
             ))}
           </ul>
-
-          <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4 text-[#FFFAFB]/80 text-sm">
-            <p className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faLinkedin} className="text-[#7DE2D1] w-4 h-4" />
-              <a 
-                href="https://linkedin.com/in/parneeta-chaudhary" 
-                target="_blank" 
-                rel="noreferrer"
-                className="hover:text-[#7DE2D1] transition-colors duration-200"
-              >
-                parnitachaudhary
-              </a>
-            </p>
-            <p className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faSkype} className="text-[#7DE2D1] w-4 h-4" />
-              <a 
-                href="skype:parnitachaudhary?chat"
-                className="hover:text-[#7DE2D1] transition-colors duration-200"
-              >
-                parnitachaudhary
-              </a>
-            </p>
-            <p className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faResearchgate} className="text-[#7DE2D1] w-4 h-4" />
-              <a 
-                href="https://researchgate.net/profile/Parnitee-Chaudhary" 
-                target="_blank" 
-                rel="noreferrer"
-                className="hover:text-[#7DE2D1] transition-colors duration-200"
-              >
-                parnitee
-              </a>
-            </p>
-          </div>
         </motion.div>
 
         {/* Right Column - Contact Form */}
@@ -140,7 +104,7 @@ const Contact = () => {
           <h3 className="text-xl sm:text-2xl font-bold text-[#FFFAFB] font-playfair mb-4 sm:mb-6">Send a Message</h3>
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div>
-              <label className="text-sm text-[#FFFAFB]/70">Full Name</label>
+              <label className="text-sm text-[#FFFAFB]/70">Full Name<span className="text-red-500">*</span></label>
               <input
                 type="text"
                 name="name"
@@ -151,7 +115,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <label className="text-sm text-[#FFFAFB]/70">Email</label>
+              <label className="text-sm text-[#FFFAFB]/70">Email<span className="text-red-500">*</span></label>
               <input
                 type="email"
                 name="email"
@@ -162,7 +126,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <label className="text-sm text-[#FFFAFB]/70">Message</label>
+              <label className="text-sm text-[#FFFAFB]/70">Message<span className="text-red-500">*</span></label>
               <textarea
                 name="message"
                 rows={4}
