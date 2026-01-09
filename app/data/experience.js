@@ -157,18 +157,10 @@ export const technicalSkills = {
   ]
 }
 
-export const computerProficiency = [
-  "MS Word",
-  "MS Excel",
-  "MS PowerPoint",
-  "Adobe Photoshop CS"
-]
-
-export const languagesSpoken = ["English", "Hindi", "Punjabi"]
 
 export const professionalMemberships = [
-  "Seabuckthorn Association of India — Permanent member",
-  "Delhi University Botanical Society — Member",
-  "Biochemical Society, London — Member",
-  "Indian Society of Horticultural Research and Development — Member"
+  "Seabuckthorn Association of India - Permanent member",
+  "Delhi University Botanical Society - Member",
+  "Biochemical Society, London - Member",
+  "Indian Society of Horticultural Research and Development - Member"
 ]
