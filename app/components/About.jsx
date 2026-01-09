@@ -65,7 +65,7 @@ const SimpleCard = ({ children, className = "", delay = 0, icon: Icon }) => {
                         <Icon size={20} className="sm:w-6 sm:h-6 text-[#131515]" />
                     </motion.div>
                 )}
-                
+
                 {/* Main Content */}
                 <div className="relative z-10">
                     {children}
@@ -119,10 +119,11 @@ const About = () => {
                     className='max-w-3xl mx-auto px-2 sm:px-4'
                 >
                     <p className='text-[#FFFAFB] text-sm sm:text-base lg:text-lg leading-relaxed font-inter'>
-                        Dr. Parneeta Chaudhary is an accomplished biotechnology researcher and educator with a Ph.D. in 
-                        Biotechnology from Guru Gobind Singh Indraprastha University. Her research focuses on the development 
-                        of novel biotechnological tools for the production of bioactive compounds and their applications 
-                        in the food and pharmaceutical industries.
+                        Dr. Parneeta Chaudhary is an accomplished biotechnology researcher and educator with a Ph.D. in
+                        Biotechnology from Guru Gobind Singh Indraprastha University. Her research focuses on the development
+                        of novel biotechnological tools for the production of bioactive compounds and their applications
+                        in the food and pharmaceutical industries. With roots in life sciences, advanced training in bioinformatics, and experience in teaching computer science, I thrive at the intersection of disciplines. This diverse journey has shaped me into an educator, researcher, and mentor committed to fostering innovation and student growth.
+                        Currently at VIPS-TC. Formerly Assistant professor for Artificial Intelligence and Design & Analysis of Algorithm at DTU (Delhi Technological University). Experienced researcher with a demonstrated history of working in the biotechnology industry. Skilled in research (Bioinformatics and Biotechnology), analytical skills, communication, and academic writing. Strong research professional with a PhD in Biotechnology, a master's degree in bioinformatics from Jamia Millia Islamia, and a bachelor's degree focused on life sciences from Zakir Husain Delhi College, University of Delhi.
                     </p>
                 </motion.div>
             </div>
@@ -150,7 +151,7 @@ const About = () => {
                             <h4 className='text-lg sm:text-xl font-bold text-[#7DE2D1] mb-3 sm:mb-4 font-inter'>Teaching Experience</h4>
                             <ul className='space-y-3 sm:space-y-4 text-[#FFFAFB]'>
                                 <li className='flex items-start group/item'>
-                                    <motion.span 
+                                    <motion.span
                                         whileHover={{ scale: 1.2 }}
                                         className='text-[#339989] mr-3 mt-1 text-lg transition-transform duration-200 flex-shrink-0'
                                     >
@@ -159,13 +160,13 @@ const About = () => {
                                     <div className='min-w-0'>
                                         <strong className='group-hover/item:text-[#7DE2D1] transition-colors duration-200 text-sm sm:text-base'>
                                             Assistant Professor
-                                        </strong> 
+                                        </strong>
                                         <span className='text-[#FFFAFB] text-sm sm:text-base'> : Vivekananda Institute of Professional Studies, Delhi</span>
                                         <p className='text-[#FFFAFB]/80 mt-1 text-xs sm:text-sm'>Taught courses in Programming to B.Tech. CSE-AM and Electrical Engineering students.</p>
                                     </div>
                                 </li>
                                 <li className='flex items-start group/item'>
-                                    <motion.span 
+                                    <motion.span
                                         whileHover={{ scale: 1.2 }}
                                         className='text-[#339989] mr-3 mt-1 text-lg transition-transform duration-200 flex-shrink-0'
                                     >
@@ -174,7 +175,7 @@ const About = () => {
                                     <div className='min-w-0'>
                                         <strong className='group-hover/item:text-[#7DE2D1] transition-colors duration-200 text-sm sm:text-base'>
                                             Assistant Professor (Guest Faculty)
-                                        </strong> 
+                                        </strong>
                                         <span className='text-[#FFFAFB] text-sm sm:text-base'> : Department of Biotechnology, Delhi Technological University</span>
                                         <p className='text-[#FFFAFB]/80 mt-1 text-xs sm:text-sm'>Taught courses in Artificial Intelligence and Design & Analysis of Algorithms for M.Tech students.</p>
                                     </div>
@@ -197,8 +198,8 @@ const About = () => {
                         <SimpleCard delay={0.2} icon={Leaf}>
                             <h4 className='text-lg sm:text-xl font-bold text-[#7DE2D1] mb-3 font-inter'>Plant Molecular Biology</h4>
                             <p className='text-[#FFFAFB] leading-relaxed text-sm sm:text-base'>
-                                Skilled in various molecular techniques to explore plant biology at the molecular level. 
-                                Successfully conducted a comprehensive comparative proteomic analysis of tubers and bulbils 
+                                Skilled in various molecular techniques to explore plant biology at the molecular level.
+                                Successfully conducted a comprehensive comparative proteomic analysis of tubers and bulbils
                                 in Dioscorea alata L., integrating transcriptome, metabolome, and proteome data.
                             </p>
                         </SimpleCard>
@@ -217,7 +218,7 @@ const About = () => {
                             <p className='text-[#FFFAFB] leading-relaxed text-sm sm:text-base'>
                                 Leading the development of "intelligent" biofilms from agricultural waste of plants like
                                 Brassica sp. and Dioscorea sp. These biofilms utilize their halochromic properties to
-                                visually indicate food freshness, offering a sustainable alternative to harmful PVC-based 
+                                visually indicate food freshness, offering a sustainable alternative to harmful PVC-based
                                 plastic packaging.
                             </p>
                         </SimpleCard>
@@ -242,10 +243,10 @@ const About = () => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            whileHover={{ 
+                            whileHover={{
                                 scale: 1.02,
                                 borderColor: "rgba(125, 226, 209, 0.8)",
-                                transition: { duration: 0.2 }
+                                transition: { duration: 0.1 }
                             }}
                             className="relative p-3 sm:p-4 rounded-lg text-center border border-[#339989]/30 bg-[#2B2C28] cursor-pointer group transition-all duration-300"
                         >
