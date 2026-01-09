@@ -19,7 +19,7 @@ const Footer = () => {
     { name: 'Google Scholar', href: 'https://scholar.google.com/citations?user=@ParneetaChaudhary' },
     { name: 'ResearchGate', href: 'https://www.researchgate.net/profile/Parneeta-Chaudhary' },
     { name: 'ORCID', href: 'https://orcid.org/0000-0003-4314-3573' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/parneetachaudhary' }
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/parneeta-chaudhary/' }
   ]
 
   return (
