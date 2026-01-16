@@ -84,79 +84,40 @@ export const experienceTimeline = [
   }
 ]
 
-export const otherExperienceHighlights = [
-  "Communicated complex research findings through writing, oral, and poster presentations, leading to 7 research articles, 2 book chapters, 8 posters, and 1 oral presentation in national and international conferences.",
-  "Independently screened, analyzed, and curated the whole transcriptome of Hippophae salicifolia.",
-  "Supervised B.Tech and M.Tech dissertations, guiding students through experiments and data analysis."
-]
 
-export const technicalSkills = {
-  programming: ["R (basic)", "Perl scripting", "C-programming", "MATLAB"],
-  computationalBiology: [
-    "Molecular Dynamics Simulation",
-    "Molecular Docking",
-    "Virtual Screening",
-    "AutoDock",
-    "Structural & Functional Annotation",
-    "InterProScan",
-    "Evolutionary Trace Analysis",
-    "Phylogenetic analysis (MEGA)",
-    "SPIDEY",
-    "DarWin",
-    "MISA",
-    "GenAlex",
-    "PAST",
-    "XLSTAT",
-    "SPSS",
-    "BLAST",
-    "Primer design (NCBI & web tools)"
-  ],
-  analytical: [
-    "FT-IR",
-    "FE-SEM",
-    "SEM",
-    "DSA",
-    "DSC",
-    "TGA",
-    "DTA",
-    "TEM",
-    "DA",
-    "GC-MS",
-    "NMR",
-    "CD",
-    "EDX",
-    "XRD"
-  ],
-  systemsBiology: ["Cytoscape"],
-  cellCulture: ["Plant Tissue Culture"],
-  immunological: [
-    "Erythrocyte counting",
-    "Leukocyte counting",
-    "Kit-based diagnostic tests",
-    "WBC count",
-    "Immuno-electrophoresis"
-  ],
-  biochemical: [
-    "Protein, DNA, and RNA extraction & estimation",
-    "Secondary metabolite extraction and chromatographic purification",
-    "Protein purification & characterization (GC-MS, NMR, LC-MS, MTT assay)",
-    "PCR amplification, restriction digestion, agarose & PAGE electrophoresis",
-    "qRT-PCR"
-  ],
-  geneCloning: [
-    "Restriction digestion",
-    "Recombinant screening",
-    "SDS-PAGE",
-    "RT-PCR",
-    "Southern/Western blotting",
-    "2-D PAGE",
-    "Genome typing (RFLP, AFLP, RAPD)"
-  ],
-  zoology: [
-    "Dissection & anatomical studies of chordates (fish, frog) and non-chordates (cockroach, earthworm)"
-  ]
-}
-
+export const educationData = [
+  {
+    period: '2018 – 2022',
+    degree: 'Doctorate of Philosophy (Ph.D. Biotechnology)',
+    institution: 'Guru Gobind Singh Indraprastha University',
+    location: 'University School of Biotechnology, New Delhi, India',
+    details: 'Supervisor: Prof. P.C. Sharma — Focus on genetic diversity, gender markers, and miRNA validation in Seabuckthorn'
+  },
+  {
+    period: '2015 – 2017',
+    degree: 'Master of Science (M.Sc. Bioinformatics)',
+    institution: 'Jamia Millia Islamia',
+    location: 'Faculty of Natural Science (Computer Science), New Delhi, India'
+  },
+  {
+    period: '2012 – 2015',
+    degree: 'Bachelor of Science (B.Sc. Life Sciences)',
+    institution: 'University of Delhi',
+    location: 'Zakir Husain Delhi College, New Delhi, India'
+  },
+  {
+    period: '2010 – 2012',
+    degree: 'Senior Higher Secondary School (+12)',
+    institution: 'CBSE Board',
+    location: 'St. Lawrence Convent Sr. Sec. Public School, New Delhi, India'
+  },
+  {
+    period: '2010',
+    degree: 'Secondary School (+10 / Matriculation)',
+    institution: 'ICSE Board',
+    location: 'Dagshai Public School, Dagshai Cantt., Himachal Pradesh, India'
+  }
+].sort((a, b) => (a.period < b.period ? 1 : -1))
 
 export const professionalMemberships = [
   "Seabuckthorn Association of India - Permanent member",

@@ -1,17 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --color-dark: #131515;
-  --color-dark-gray: #2B2C28;
-  --color-primary: #339989;
-  --color-light-teal: #7DE2D1;
-  --color-light: #FFFAFB;
+
+  --bg-color: #131515;
+  --card-bg-color: #2B2C28;
+  --text-primary: #FFFAFB;
+  --text-secondary: rgba(255, 250, 251, 0.8);
+  --accent-color: #7DE2D1;
+  --border-color: #339989;
+  --button-color: #339989;
   --font-inter: 'Inter', sans-serif;
   --font-playfair: 'Playfair Display', serif;
 }
 
+[data-theme="light"] {
+  --bg-color: #FFFAFB;
+  --card-bg-color: rgba(125, 226, 209, 0.15);
+  --text-primary: #131515;
+  --text-secondary: #2B2C28;
+  --accent-color: #339989;
+  --border-color: #339989;
+  --button-color: #339989;
+}
+
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -20,8 +35,8 @@ html {
 
 body {
   font-family: var(--font-inter);
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
@@ -33,49 +48,61 @@ body {
   font-family: var(--font-playfair);
 }
 
-/* Performance optimizations */
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.bg-theme {
+  background-color: var(--bg-color);
 }
-
-img {
-  max-width: 100%;
-  height: auto;
+.bg-card {
+  background-color: var(--card-bg-color);
 }
-
-/* Custom scrollbar */
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-accent {
+  color: var(--accent-color);
+}
+.border-theme {
+  border-color: var(--border-color);
+}
+.btn-primary {
+  background-color: var(--button-color);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-1px);
+}
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #131515;
+  background: var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #339989;
+  background: var(--border-color);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7DE2D1;
+  background: var(--accent-color);
 }
 
-/* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   html {
     scroll-behavior: auto;
   }
 }
-
-/* Mobile-first responsive improvements */
 .container {
   width: 100%;
   margin: 0 auto;

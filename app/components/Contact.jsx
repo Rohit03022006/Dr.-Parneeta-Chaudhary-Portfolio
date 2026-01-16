@@ -37,9 +37,7 @@ const Contact = () => {
       setStatus({ state: "loading", message: "Sending message..." })
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: "application/json" },
         body: formData,
       })
       const data = await response.json()
@@ -61,13 +59,14 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-[#131515] scroll-mt-16 sm:scroll-mt-20"
+      className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-(--bg-color) scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#FFFAFB] font-playfair mb-4">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-playfair mb-4 text-(--text-primary)">
           To Contact  
         </h2>
-        <p className="text-[#FFFAFB]/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
+
+        <p className="text-(--text-primary)/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
           Whether it's research, mentorship, or keynote sessions, feel free to reach out using the
           form or connect through the quick links below.
         </p>
@@ -79,16 +78,21 @@ const Contact = () => {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-[#2B2C28] border border-[#339989]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
+          className="bg-(--card-bg-color) border border-(--border-color)/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-[#FFFAFB] font-playfair mb-4 sm:mb-6">How I Can Help</h3>
+          <h3 className="text-xl sm:text-2xl font-bold font-playfair mb-4 sm:mb-6 text-(--text-primary)">
+            How I Can Help
+          </h3>
+
           <ul className="space-y-3 sm:space-y-4">
             {highlights.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <div className="mt-0.5 sm:mt-1 flex-shrink-0">
-                  <Star size={16} className="sm:w-4 sm:h-5 text-[#7DE2D1]" />
+                  <Star size={16} className="sm:w-4 sm:h-5 text-(--accent-color)" />
                 </div>
-                <p className="text-[#FFFAFB]/80 text-sm sm:text-base leading-relaxed">{item}</p>
+                <p className="text-(--text-primary)/80 text-sm sm:text-base leading-relaxed">
+                  {item}
+                </p>
               </li>
             ))}
           </ul>
@@ -99,56 +103,67 @@ const Contact = () => {
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-[#2B2C28] border border-[#339989]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
+          className="bg-(--card-bg-color) border border-(--border-color)/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-[#FFFAFB] font-playfair mb-4 sm:mb-6">Send a Message</h3>
+          <h3 className="text-xl sm:text-2xl font-bold font-playfair mb-4 sm:mb-6 text-(--text-primary)">
+            Send a Message
+          </h3>
+
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div>
-              <label className="text-sm text-[#FFFAFB]/70">Full Name<span className="text-red-500">*</span></label>
+              <label className="text-sm text-(--text-primary)/70">
+                Full Name<span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="name"
                 required
-                className="w-full mt-1 rounded-lg sm:rounded-xl bg-[#131515] border border-[#339989]/30 px-4 py-2.5 sm:py-3 text-[#FFFAFB] focus:outline-none focus:border-[#7DE2D1] text-sm sm:text-base"
+                className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label className="text-sm text-[#FFFAFB]/70">Email<span className="text-red-500">*</span></label>
+              <label className="text-sm text-(--text-primary)/70">
+                Email<span className="text-red-500">*</span>
+              </label>
               <input
                 type="email"
                 name="email"
                 required
-                className="w-full mt-1 rounded-lg sm:rounded-xl bg-[#131515] border border-[#339989]/30 px-4 py-2.5 sm:py-3 text-[#FFFAFB] focus:outline-none focus:border-[#7DE2D1] text-sm sm:text-base"
+                className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="text-sm text-[#FFFAFB]/70">Message<span className="text-red-500">*</span></label>
+              <label className="text-sm text-(--text-primary)/70">
+                Message<span className="text-red-500">*</span>
+              </label>
               <textarea
                 name="message"
                 rows={4}
                 required
-                className="w-full mt-1 rounded-lg sm:rounded-xl bg-[#131515] border border-[#339989]/30 px-4 py-2.5 sm:py-3 text-[#FFFAFB] focus:outline-none focus:border-[#7DE2D1] text-sm sm:text-base resize-vertical"
+                className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base resize-vertical"
                 placeholder="How can I help you?"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-[#339989] text-[#131515] font-semibold hover:bg-[#7DE2D1] transition-colors duration-200 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={status.state === "loading"}
+              className="w-full py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-(--button-color) text-(--bg-color) font-semibold hover:bg-(--accent-color) transition-colors duration-200 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status.state === "loading" ? "Sending..." : "Submit"}
             </button>
           </form>
-          
+
           {status.state !== "idle" && (
             <p
               className={`mt-3 sm:mt-4 text-sm font-inter text-center sm:text-left ${
-                status.state === "success" ? "text-[#7DE2D1]" : "text-red-400"
+                status.state === "success"
+                  ? "text-(--accent-color)"
+                  : "text-red-400"
               }`}
             >
               {status.message}
