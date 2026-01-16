@@ -88,7 +88,7 @@ const Contact = () => {
             {highlights.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <div className="mt-0.5 sm:mt-1 flex-shrink-0">
-                  <Star size={16} className="sm:w-4 sm:h-5 text-(--accent-color)" />
+                  <Star size={16}  fill="var(--border-color)"  className="sm:w-4 sm:h-5 text-(--accent-color)" />
                 </div>
                 <p className="text-(--text-primary)/80 text-sm sm:text-base leading-relaxed">
                   {item}
