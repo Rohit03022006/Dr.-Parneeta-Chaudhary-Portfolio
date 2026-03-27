@@ -1,35 +1,38 @@
-import { Resend } from 'resend';
-import { NextResponse } from 'next/server';
-
+import { Resend } from "resend";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
+
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("Missing RESEND_API_KEY");
+    }
+
+    if (!process.env.CONTACT_EMAIL) {
+      throw new Error("Missing CONTACT_EMAIL");
+    }
     const { name, email, message } = await req.json();
 
     // Basic validation
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'Name, email, and message are required.' },
-        { status: 400 }
+        { error: "Name, email, and message are required." },
+        { status: 400 },
       );
     }
-
-    console.log("RESEND:", process.env.RESEND_API_KEY);
-    console.log("EMAIL:", process.env.CONTACT_EMAIL);
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Invalid email address.' },
-        { status: 400 }
+        { error: "Invalid email address." },
+        { status: 400 },
       );
     }
-
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Contact Form <noreply@yourdomain.com>', // You can update this with your verified domain
+      from: "Contact Form <onboarding@resend.dev>", // You can update this with your verified domain
       to: process.env.CONTACT_EMAIL,
       subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
@@ -58,22 +61,22 @@ export async function POST(req) {
     });
 
     if (error) {
-      console.error('Resend Error:', error);
+      console.error("Resend Error:", error);
       return NextResponse.json(
-        { error: 'Failed to send email. Please try again later.' },
-        { status: 500 }
+        { error: "Failed to send email. Please try again later." },
+        { status: 500 },
       );
     }
 
     return NextResponse.json(
-      { success: true, message: 'Message sent successfully!' },
-      { status: 200 }
+      { success: true, message: "Message sent successfully!" },
+      { status: 200 },
     );
   } catch (err) {
-    console.error('Contact API Error:', err);
+    console.error("Contact API Error:", err);
     return NextResponse.json(
-      { error: 'An unexpected error occurred.' },
-      { status: 500 }
+      { error: "An unexpected error occurred." },
+      { status: 500 },
     );
   }
 }
