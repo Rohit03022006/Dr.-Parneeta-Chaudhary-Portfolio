@@ -26,7 +26,7 @@ export async function POST(req) {
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // You can update this with your verified domain
+      from: 'Contact Form <noreply@yourdomain.com>', // You can update this with your verified domain
       to: process.env.CONTACT_EMAIL,
       subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
