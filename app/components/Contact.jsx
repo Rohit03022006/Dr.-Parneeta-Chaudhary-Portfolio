@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Star, PartyPopper } from "lucide-react"
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, PartyPopper } from "lucide-react";
 
 const highlights = [
   "Collaborative Biotechnology and Bioinformatics research opportunities",
@@ -10,42 +10,56 @@ const highlights = [
   "Consultation on multi-omics",
   "Industry-academia partnerships",
   "Mentorship and Research Projects for students",
-]
-
+];
 
 const SuccessModal = ({ onClose }) => {
   useEffect(() => {
-    let cancelled = false
+    let cancelled = false;
     import("canvas-confetti").then(({ default: confetti }) => {
-      if (cancelled) return
+      if (cancelled) return;
       confetti({
         particleCount: 120,
         spread: 90,
         origin: { y: 0.55 },
         colors: ["#339989", "#7DE2D1", "#FFFAFB", "#2B2C28"],
-      })
+      });
 
       setTimeout(() => {
-        if (cancelled) return
-        confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 }, colors: ["#339989", "#7DE2D1"] })
-        confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 }, colors: ["#339989", "#7DE2D1"] })
-      }, 300)
-    })
+        if (cancelled) return;
+        confetti({
+          particleCount: 60,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ["#339989", "#7DE2D1"],
+        });
+        confetti({
+          particleCount: 60,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ["#339989", "#7DE2D1"],
+        });
+      }, 300);
+    });
 
     // Auto-close after 4 seconds
-    const timer = setTimeout(onClose, 4000)
+    const timer = setTimeout(onClose, 4000);
 
     return () => {
-      cancelled = true
-      clearTimeout(timer)
-    }
-  }, [onClose])
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [onClose]);
 
   return (
     // Backdrop
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: "rgba(19, 21, 21, 0.75)", backdropFilter: "blur(4px)" }}
+      style={{
+        backgroundColor: "rgba(19, 21, 21, 0.75)",
+        backdropFilter: "blur(4px)",
+      }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="success-modal-title"
@@ -57,13 +71,21 @@ const SuccessModal = ({ onClose }) => {
         exit={{ opacity: 0, scale: 0.7 }}
         transition={{ type: "spring", stiffness: 300, damping: 22 }}
         className="relative w-full max-w-sm rounded-2xl p-8 shadow-2xl text-center"
-        style={{ backgroundColor: "var(--card-bg-color)", border: "1px solid var(--border-color)" }}
+        style={{
+          backgroundColor: "var(--card-bg-color)",
+          border: "1px solid var(--border-color)",
+        }}
         onClick={(e) => e.stopPropagation()}
         role="alert"
         aria-live="assertive"
       >
         {/* Emoji */}
-        <div className="text-6xl mb-4 select-none items-center justify-center" aria-hidden="true"><PartyPopper className="w-10 h-10" /></div>
+        <div
+          className="flex mb-4 items-center justify-center"
+          aria-hidden="true"
+        >
+          <PartyPopper className="w-10 h-10" />
+        </div>
         <h2
           id="success-modal-title"
           className="text-xl sm:text-2xl font-bold font-playfair mb-3"
@@ -73,14 +95,21 @@ const SuccessModal = ({ onClose }) => {
         </h2>
 
         {/* Subtitle */}
-        <p className="text-sm mb-6" style={{ color: "var(--text-primary)", opacity: 0.7 }}>
-          I'll get back to you as soon as possible.
+        <p
+          className="text-sm mb-6"
+          style={{ color: "var(--text-primary)", opacity: 0.7 }}
+        >
+          I&apos;ll get back to you as soon as possible.
         </p>
 
         {/* Progress bar that drains over 3 s */}
         <div
           className="w-full rounded-full overflow-hidden"
-          style={{ height: "4px", backgroundColor: "var(--border-color)", opacity: 0.3 }}
+          style={{
+            height: "4px",
+            backgroundColor: "var(--border-color)",
+            opacity: 0.3,
+          }}
         >
           <motion.div
             initial={{ width: "100%" }}
@@ -89,7 +118,10 @@ const SuccessModal = ({ onClose }) => {
             style={{ height: "100%", backgroundColor: "var(--accent-color)" }}
           />
         </div>
-        <p className="text-xs mt-2" style={{ color: "var(--text-primary)", opacity: 0.4 }}>
+        <p
+          className="text-xs mt-2"
+          style={{ color: "var(--text-primary)", opacity: 0.4 }}
+        >
           Closing automatically…
         </p>
 
@@ -107,50 +139,59 @@ const SuccessModal = ({ onClose }) => {
         </button>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 /* ─── Contact Section ───────────────────────────────────────────────────── */
 const Contact = () => {
-  const [status, setStatus] = useState({ state: "idle", message: "" })
-  const [showModal, setShowModal] = useState(false)
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+  const [showModal, setShowModal] = useState(false);
 
-  const handleClose = useCallback(() => setShowModal(false), [])
+  const handleClose = useCallback(() => setShowModal(false), []);
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    const form = event.currentTarget
+    event.preventDefault();
+    const form = event.currentTarget;
 
-    const formData = new FormData(form)
+    const formData = new FormData(form);
     const dataObj = {
       name: formData.get("name"),
       email: formData.get("email"),
       message: formData.get("message"),
-    }
+    };
 
     try {
-      setStatus({ state: "loading", message: "Sending message..." })
+      setStatus({ state: "loading", message: "Sending message..." });
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataObj),
-      })
-      const data = await response.json()
+      });
+      const data = await response.json();
 
       if (data.success) {
-        setStatus({ state: "success", message: "Thank you! I will get back to you shortly." })
-        setShowModal(true)
-        form.reset()
+        setStatus({
+          state: "success",
+          message: "Thank you! I will get back to you shortly.",
+        });
+        setShowModal(true);
+        form.reset();
       } else {
-        setStatus({ state: "error", message: data.error || "Something went wrong. Please try again." })
+        setStatus({
+          state: "error",
+          message: data.error || "Something went wrong. Please try again.",
+        });
       }
     } catch (error) {
       setStatus({
         state: "error",
-        message: error instanceof Error ? error.message : "Unable to send message. Please try again later.",
-      })
+        message:
+          error instanceof Error
+            ? error.message
+            : "Unable to send message. Please try again later.",
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -168,8 +209,8 @@ const Contact = () => {
             To Contact
           </h2>
           <p className="text-(--text-primary)/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
-            Whether it's research, mentorship, or keynote sessions, feel free to reach out using the
-            form or connect through the quick links below.
+            Whether it&apos;s research, mentorship, or keynote sessions, feel free to
+            reach out using the form or connect through the quick links below.
           </p>
         </div>
 
@@ -187,10 +228,16 @@ const Contact = () => {
             <ul className="space-y-3 sm:space-y-4">
               {highlights.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="mt-0.5 sm:mt-1 flex-shrink-0">
-                    <Star size={16} fill="var(--border-color)" className="sm:w-4 sm:h-5 text-(--accent-color)" />
+                  <div className="mt-0.5 sm:mt-1 shrink-0">
+                    <Star
+                      size={16}
+                      fill="var(--border-color)"
+                      className="sm:w-4 sm:h-5 text-(--accent-color)"
+                    />
                   </div>
-                  <p className="text-(--text-primary)/80 text-sm sm:text-base leading-relaxed">{item}</p>
+                  <p className="text-(--text-primary)/80 text-sm sm:text-base leading-relaxed">
+                    {item}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -270,7 +317,7 @@ const Contact = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
