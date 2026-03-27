@@ -15,6 +15,9 @@ export async function POST(req) {
       );
     }
 
+    console.log("RESEND:", process.env.RESEND_API_KEY);
+    console.log("EMAIL:", process.env.CONTACT_EMAIL);
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
