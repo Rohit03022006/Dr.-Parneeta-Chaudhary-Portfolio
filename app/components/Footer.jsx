@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, ExternalLink, Heart } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, Heart } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -40,7 +40,7 @@ const Footer = () => {
             </h3>
 
             <div className="flex items-center gap-2 text-(--text-primary)/60 text-sm">
-              <Heart size={16}  fill="var(--border-color)" className="text-(--border-color) flex-shrink-0" />
+              <Heart size={16} fill="var(--border-color)" className="text-(--border-color) flex-shrink-0" />
               <span>Building the future of biotechnology</span>
             </div>
           </motion.div>
@@ -62,10 +62,23 @@ const Footer = () => {
                   <motion.a
                     key={index}
                     href={link.href}
-                    whileHover={{ x: 5 }}
-                    className="block text-(--text-primary)/70 hover:text-(--accent-color) transition-colors duration-200 text-sm sm:text-base whitespace-nowrap"
+                    whileHover="hover"
+                    initial="rest"
+                    animate="rest"
+                    className="group flex items-center gap-2 text-(--text-primary)/70 hover:text-(--accent-color) transition-colors duration-200 text-sm sm:text-base whitespace-nowrap"
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+
+                    <motion.span
+                      variants={{
+                        rest: { opacity: 0, x: -5 },
+                        hover: { opacity: 1, x: 0 },
+                      }}
+                      transition={{ duration: 0.2 }}
+                      className="inline-flex"
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </motion.span>
                   </motion.a>
                 ))}
               </div>

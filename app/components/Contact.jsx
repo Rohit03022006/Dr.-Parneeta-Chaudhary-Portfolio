@@ -1,14 +1,8 @@
 "use client"
 
-import React, { useState } from "react"
-import { motion } from "framer-motion"
-import { Star, MapPin } from "lucide-react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faLinkedin,
-  faSkype,
-  faResearchgate,
-} from "@fortawesome/free-brands-svg-icons"
+import React, { useState, useEffect, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Star, PartyPopper } from "lucide-react"
 
 const highlights = [
   "Collaborative Biotechnology and Bioinformatics research opportunities",
@@ -18,35 +12,137 @@ const highlights = [
   "Mentorship and Research Projects for students",
 ]
 
+
+const SuccessModal = ({ onClose }) => {
+  useEffect(() => {
+    let cancelled = false
+    import("canvas-confetti").then(({ default: confetti }) => {
+      if (cancelled) return
+      confetti({
+        particleCount: 120,
+        spread: 90,
+        origin: { y: 0.55 },
+        colors: ["#339989", "#7DE2D1", "#FFFAFB", "#2B2C28"],
+      })
+
+      setTimeout(() => {
+        if (cancelled) return
+        confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 }, colors: ["#339989", "#7DE2D1"] })
+        confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 }, colors: ["#339989", "#7DE2D1"] })
+      }, 300)
+    })
+
+    // Auto-close after 4 seconds
+    const timer = setTimeout(onClose, 4000)
+
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [onClose])
+
+  return (
+    // Backdrop
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ backgroundColor: "rgba(19, 21, 21, 0.75)", backdropFilter: "blur(4px)" }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="success-modal-title"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.7 }}
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+        className="relative w-full max-w-sm rounded-2xl p-8 shadow-2xl text-center"
+        style={{ backgroundColor: "var(--card-bg-color)", border: "1px solid var(--border-color)" }}
+        onClick={(e) => e.stopPropagation()}
+        role="alert"
+        aria-live="assertive"
+      >
+        {/* Emoji */}
+        <div className="text-6xl mb-4 select-none items-center justify-center" aria-hidden="true"><PartyPopper className="w-10 h-10" /></div>
+        <h2
+          id="success-modal-title"
+          className="text-xl sm:text-2xl font-bold font-playfair mb-3"
+          style={{ color: "var(--text-primary)" }}
+        >
+          Thank you for submitting the form!
+        </h2>
+
+        {/* Subtitle */}
+        <p className="text-sm mb-6" style={{ color: "var(--text-primary)", opacity: 0.7 }}>
+          I'll get back to you as soon as possible.
+        </p>
+
+        {/* Progress bar that drains over 3 s */}
+        <div
+          className="w-full rounded-full overflow-hidden"
+          style={{ height: "4px", backgroundColor: "var(--border-color)", opacity: 0.3 }}
+        >
+          <motion.div
+            initial={{ width: "100%" }}
+            animate={{ width: "0%" }}
+            transition={{ duration: 3, ease: "linear" }}
+            style={{ height: "100%", backgroundColor: "var(--accent-color)" }}
+          />
+        </div>
+        <p className="text-xs mt-2" style={{ color: "var(--text-primary)", opacity: 0.4 }}>
+          Closing automatically…
+        </p>
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="mt-5 px-6 py-2 rounded-xl text-sm font-semibold transition-colors duration-200"
+          style={{
+            backgroundColor: "var(--button-color)",
+            color: "var(--bg-color)",
+          }}
+          aria-label="Close success message"
+        >
+          Close
+        </button>
+      </motion.div>
+    </div>
+  )
+}
+
+/* ─── Contact Section ───────────────────────────────────────────────────── */
 const Contact = () => {
   const [status, setStatus] = useState({ state: "idle", message: "" })
-  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
+  const [showModal, setShowModal] = useState(false)
+
+  const handleClose = useCallback(() => setShowModal(false), [])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     const form = event.currentTarget
-    if (!accessKey) {
-      setStatus({ state: "error", message: "Missing Web3Forms key." })
-      return
-    }
 
     const formData = new FormData(form)
-    formData.append("access_key", accessKey)
+    const dataObj = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    }
 
     try {
       setStatus({ state: "loading", message: "Sending message..." })
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataObj),
       })
       const data = await response.json()
 
       if (data.success) {
         setStatus({ state: "success", message: "Thank you! I will get back to you shortly." })
+        setShowModal(true)
         form.reset()
       } else {
-        setStatus({ state: "error", message: data.message || "Something went wrong. Please try again." })
+        setStatus({ state: "error", message: data.error || "Something went wrong. Please try again." })
       }
     } catch (error) {
       setStatus({
@@ -57,121 +153,123 @@ const Contact = () => {
   }
 
   return (
-    <section
-      id="contact"
-      className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-(--bg-color) scroll-mt-16 sm:scroll-mt-20"
-    >
-      <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-playfair mb-4 text-(--text-primary)">
-          To Contact  
-        </h2>
+    <>
+      {/* Success Modal (portal-like via AnimatePresence) */}
+      <AnimatePresence>
+        {showModal && <SuccessModal onClose={handleClose} />}
+      </AnimatePresence>
 
-        <p className="text-(--text-primary)/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
-          Whether it's research, mentorship, or keynote sessions, feel free to reach out using the
-          form or connect through the quick links below.
-        </p>
-      </div>
+      <section
+        id="contact"
+        className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-(--bg-color) scroll-mt-16 sm:scroll-mt-20"
+      >
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-playfair mb-4 text-(--text-primary)">
+            To Contact
+          </h2>
+          <p className="text-(--text-primary)/80 text-sm sm:text-base max-w-3xl mx-auto px-2 sm:px-4">
+            Whether it's research, mentorship, or keynote sessions, feel free to reach out using the
+            form or connect through the quick links below.
+          </p>
+        </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
-        {/* Left Column - How I Can Help */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-(--card-bg-color) border border-(--border-color)/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
-        >
-          <h3 className="text-xl sm:text-2xl font-bold font-playfair mb-4 sm:mb-6 text-(--text-primary)">
-            How I Can Help
-          </h3>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
+          {/* Left Column - How I Can Help */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-(--card-bg-color) border border-(--border-color)/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold font-playfair mb-4 sm:mb-6 text-(--text-primary)">
+              How I Can Help
+            </h3>
+            <ul className="space-y-3 sm:space-y-4">
+              {highlights.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <div className="mt-0.5 sm:mt-1 flex-shrink-0">
+                    <Star size={16} fill="var(--border-color)" className="sm:w-4 sm:h-5 text-(--accent-color)" />
+                  </div>
+                  <p className="text-(--text-primary)/80 text-sm sm:text-base leading-relaxed">{item}</p>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
-          <ul className="space-y-3 sm:space-y-4">
-            {highlights.map((item, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <div className="mt-0.5 sm:mt-1 flex-shrink-0">
-                  <Star size={16}  fill="var(--border-color)"  className="sm:w-4 sm:h-5 text-(--accent-color)" />
-                </div>
-                <p className="text-(--text-primary)/80 text-sm sm:text-base leading-relaxed">
-                  {item}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {/* Right Column - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-(--card-bg-color) border border-(--border-color)/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold font-playfair mb-4 sm:mb-6 text-(--text-primary)">
+              Send a Message
+            </h3>
 
-        {/* Right Column - Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-(--card-bg-color) border border-(--border-color)/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
-        >
-          <h3 className="text-xl sm:text-2xl font-bold font-playfair mb-4 sm:mb-6 text-(--text-primary)">
-            Send a Message
-          </h3>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              <div>
+                <label className="text-sm text-(--text-primary)/70">
+                  Full Name<span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base"
+                  placeholder="Your name"
+                />
+              </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-            <div>
-              <label className="text-sm text-(--text-primary)/70">
-                Full Name<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                required
-                className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base"
-                placeholder="Your name"
-              />
-            </div>
+              <div>
+                <label className="text-sm text-(--text-primary)/70">
+                  Email<span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base"
+                  placeholder="you@example.com"
+                />
+              </div>
 
-            <div>
-              <label className="text-sm text-(--text-primary)/70">
-                Email<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base"
-                placeholder="you@example.com"
-              />
-            </div>
+              <div>
+                <label className="text-sm text-(--text-primary)/70">
+                  Message<span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  name="message"
+                  rows={4}
+                  required
+                  className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base resize-vertical"
+                  placeholder="How can I help you?"
+                />
+              </div>
 
-            <div>
-              <label className="text-sm text-(--text-primary)/70">
-                Message<span className="text-red-500">*</span>
-              </label>
-              <textarea
-                name="message"
-                rows={4}
-                required
-                className="w-full mt-1 rounded-lg sm:rounded-xl bg-(--bg-color) border border-(--border-color)/30 px-4 py-2.5 sm:py-3 text-(--text-primary) focus:outline-none focus:border-(--accent-color) text-sm sm:text-base resize-vertical"
-                placeholder="How can I help you?"
-              />
-            </div>
+              <button
+                type="submit"
+                disabled={status.state === "loading"}
+                className="w-full py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-(--button-color) text-(--bg-color) font-semibold hover:bg-(--accent-color) transition-colors duration-200 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status.state === "loading" ? "Sending…" : "Submit"}
+              </button>
+            </form>
 
-            <button
-              type="submit"
-              disabled={status.state === "loading"}
-              className="w-full py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-(--button-color) text-(--bg-color) font-semibold hover:bg-(--accent-color) transition-colors duration-200 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {status.state === "loading" ? "Sending..." : "Submit"}
-            </button>
-          </form>
-
-          {status.state !== "idle" && (
-            <p
-              className={`mt-3 sm:mt-4 text-sm font-inter text-center sm:text-left ${
-                status.state === "success"
-                  ? "text-(--accent-color)"
-                  : "text-red-400"
-              }`}
-            >
-              {status.message}
-            </p>
-          )}
-        </motion.div>
-      </div>
-    </section>
+            {/* Inline error message (only shown for errors) */}
+            {status.state === "error" && (
+              <p
+                role="alert"
+                aria-live="assertive"
+                className="mt-3 sm:mt-4 text-sm font-inter text-center sm:text-left text-red-400"
+              >
+                {status.message}
+              </p>
+            )}
+          </motion.div>
+        </div>
+      </section>
+    </>
   )
 }
 

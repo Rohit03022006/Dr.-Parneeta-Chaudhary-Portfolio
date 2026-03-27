@@ -100,53 +100,65 @@ const About = () => {
         >
           About Me
         </motion.h2>
-
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="max-w-3xl mx-auto px-2 sm:px-4"
         >
-          <p className="text-(--text-primary) text-base sm:text-lg leading-relaxed font-inter space-y-4">
-            <span className="block">
-              Dr. Parneeta Chaudhary is an accomplished biotechnology researcher
-              and educator with a Ph.D. in Biotechnology from Guru Gobind Singh
-              Indraprastha University.
-            </span>
+          <div className="text-(--text-primary) text-base sm:text-lg leading-relaxed font-inter space-y-6">
 
-            <span className="block">
-              Her research focuses on the development of novel biotechnological
-              tools for the production of bioactive compounds and their
-              applications in the food and pharmaceutical industries.
-            </span>
+            <p>
+              <strong className="text-(--accent-color)">Dr. Parneeta Chaudhary</strong> is an accomplished{" "}
+              <strong>biotechnology researcher and educator</strong> with a{" "}
+              <strong>Ph.D. in Biotechnology</strong> from{" "}
+              <strong>Guru Gobind Singh Indraprastha University</strong>.
+            </p>
 
-            <span className="block">
-              With a strong foundation in life sciences, advanced training in
-              bioinformatics, and experience teaching computer science, she
-              works at the intersection of multiple disciplines. This diverse
-              journey has shaped her into an educator, researcher, and mentor
+            <p>
+              Her research focuses on the development of{" "}
+              <strong>novel biotechnological tools</strong> for the production of{" "}
+              <strong>bioactive compounds</strong> and their applications in the{" "}
+              <strong>food and pharmaceutical industries</strong>.
+            </p>
+
+            <p>
+              With a strong foundation in <strong>life sciences</strong>, advanced training
+              in <strong>bioinformatics</strong>, and experience teaching{" "}
+              <strong>computer science</strong>, she works at the{" "}
+              <strong>intersection of multiple disciplines</strong>. This diverse journey
+              has shaped her into an <strong>educator, researcher, and mentor</strong>{" "}
               committed to fostering innovation and student growth.
-            </span>
+            </p>
 
-            <span className="block">
-              She is currently associated with VIPS-TC and previously served as
-              an Assistant Professor teaching Artificial Intelligence and Design
-              & Analysis of Algorithms at Delhi Technological University (DTU).
-            </span>
+            <p>
+              She is currently associated with <strong>VIPS-TC</strong> and previously served
+              as an <strong>Assistant Professor</strong> teaching{" "}
+              <strong>Artificial Intelligence</strong> and{" "}
+              <strong>Design & Analysis of Algorithms</strong> at{" "}
+              <strong>Delhi Technological University (DTU)</strong>.
+            </p>
 
-            <span className="block">
-              An experienced researcher with a demonstrated history of working
-              in the biotechnology industry, she is skilled in bioinformatics
-              and biotechnology research, analytical thinking, communication,
-              and academic writing.
-            </span>
+            <p>
+              An experienced researcher with a demonstrated history in the{" "}
+              <strong>biotechnology industry</strong>, she is skilled in{" "}
+              <strong>bioinformatics</strong>,{" "}
+              <strong>biotechnology research</strong>,{" "}
+              <strong>analytical thinking</strong>,{" "}
+              <strong>communication</strong>, and{" "}
+              <strong>academic writing</strong>.
+            </p>
 
-            <span className="block">
-              Dr. Chaudhary holds a Master’s degree in Bioinformatics from Jamia
-              Millia Islamia and a Bachelor’s degree in Life Sciences from Zakir
-              Husain Delhi College, University of Delhi.
-            </span>
-          </p>
+            <p>
+              Dr. Chaudhary holds a{" "}
+              <strong>Master’s degree in Bioinformatics</strong> from{" "}
+              <strong>Jamia Millia Islamia</strong> and a{" "}
+              <strong>Bachelor’s degree in Life Sciences</strong> from{" "}
+              <strong>Zakir Husain Delhi College, University of Delhi</strong>.
+            </p>
+
+          </div>
         </motion.div>
       </div>
 
